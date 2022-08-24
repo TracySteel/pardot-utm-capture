@@ -1,0 +1,19 @@
+		   <script>
+		   	setTimeout(function() {
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+            const utm_parameters = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+            const selectorPatterns = ["p.UTMTYPE input", "p.UTMTYPE_most_recent input"];
+            utm_parameters.forEach(function (u) {
+                const utmValue = params.get(u);
+                selectorPatterns.forEach(function (sp) {
+                    const utmSelector = document.querySelector(sp.replace("UTMTYPE", u));
+                    if (utmSelector && utmValue) {
+                        utmSelector.value = utmValue;
+                    }
+               
+                });
+            });
+            
+            }, 1000);
+        </script>
